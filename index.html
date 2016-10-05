@@ -2,64 +2,67 @@
 <html>
     <head>ОГЗ</head>
 	<title>Обратная геодезическая задача</title>
-    <body>
-	
-		<script type="text/javascript">
-		function CalcOGZ()
-			{
-                var inp_xknp = document.getElementById('Xknp');
-                var inp_yknp = document.getElementById('Yknp');
-                var inp_xz = document.getElementById('Xz');
-                var inp_yz = document.getElementById('Yz');
-                var out_Dk = document.getElementById('Dk');
-				var out_Ak = document.getElementById('Ak');
-
-                var value_xknp = inp_xknp.value;
-                var value_yknp = inp_yknp.value;
-                var value_xz = inp_xz.value;
-                var value_yz = inp_yz.value;
-
-                var dx = value_xz - value_xknp;
-                var dy = value_yz - value_yknp;
-
-                var res_Dk = Math.sqrt(dx * dx + dy * dy);
-				
-				var R= (Math.acos(dx/res_Dk)*9.55);
-                var res_Ak;
-               if(dy>0){res_Ak = R;}
-		       else {res_Ak = 60 - R;}
-		   
-               document.getElementById('Ak').value = res_Ak.toFixed(2);
-               document.getElementById('Dk').value = res_Dk.toFixed();
-				
-            }
-		</script>
+		
+		<style type="text/css">
+			html, body, #basicMap 
+				{
+					width: 100%;
+					height: 100%;
+					margin: 0;
+				}
+		</style>
 		
 		<script 
-			src="http://www.openlayers.org/api/OpenLayers.js">
+			src="OpenLayers.js">
 		</script>
 		
 		<script>
-			map = new OpenLayers.Map("mapdiv");
-			map.addLayer(new OpenLayers.Layer.OSM());
-
-			var lonLat = new OpenLayers.LonLat( -0.1279688 ,51.5077286 )
-				  .transform(
-					new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-					map.getProjectionObject() // to Spherical Mercator Projection
-				  );
-				  
-			var zoom=16;
-
-			var markers = new OpenLayers.Layer.Markers( "Markers" );
-			map.addLayer(markers);
-			
-			markers.addMarker(new OpenLayers.Marker(lonLat));
-			
-			map.setCenter (lonLat, zoom);
+			function init() 
+				{
+					map = new OpenLayers.Map("basicMap");
+					var mapnik         = new OpenLayers.Layer.OSM();
+					var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+					var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+					var position       = new OpenLayers.LonLat(36.43510580062866,49.93178994227235).transform( fromProjection, toProjection);
+					var zoom           = 17; 
+					map.addLayer(mapnik);
+					map.setCenter(position, zoom );
+				}
 		</script>
-  
+		
+    <body onload="init();">
+	
+		<script type="text/javascript">
+			function CalcOGZ()
+				{
+					var inp_xknp = document.getElementById('Xknp');
+					var inp_yknp = document.getElementById('Yknp');
+					var inp_xz = document.getElementById('Xz');
+					var inp_yz = document.getElementById('Yz');
+					var out_Dk = document.getElementById('Dk');
+					var out_Ak = document.getElementById('Ak');
 
+					var value_xknp = inp_xknp.value;
+					var value_yknp = inp_yknp.value;
+					var value_xz = inp_xz.value;
+					var value_yz = inp_yz.value;
+
+					var dx = value_xz - value_xknp;
+					var dy = value_yz - value_yknp;
+
+					var res_Dk = Math.sqrt(dx * dx + dy * dy);
+					
+					var R= (Math.acos(dx/res_Dk)*9.55);
+					var res_Ak;
+				   if(dy>0){res_Ak = R;}
+				   else {res_Ak = 60 - R;}
+			   
+				   document.getElementById('Ak').value = res_Ak.toFixed(2);
+				   document.getElementById('Dk').value = res_Dk.toFixed();
+					
+				}
+		</script>
+		
 		<table align="center" border="1" cellpadding="3" cellspacing="1" style="width: 250px">
 			<tbody>
 				<tr>
@@ -101,7 +104,7 @@
 		<p>
 		<iframe 
 			width="100%" 
-			height="400" 
+			height="200" 
 			frameborder="0" 
 			scrolling="no" 
 			marginheight="0" 
@@ -110,6 +113,11 @@
 			style="border: 1px solid black">
 		</iframe>
 		<br/>
+		<p>
+		<p>
+		<div 
+			id="basicMap">
+		</div>
 		
     </body>
 </html>
