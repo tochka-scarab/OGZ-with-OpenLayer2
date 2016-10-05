@@ -63,56 +63,63 @@
 				}
 		</script>
 		
-		<table align="center" border="1" cellpadding="3" cellspacing="1" style="width: 250px">
+		<table align="center" border="1" cellpadding="3" cellspacing="1">
 			<tbody>
 				<tr>
-					<td colspan="3" style="text-align: center;">
-						<p><font face="Tahoma, Geneva, sans-serif"><font size="4"><b>Обратная геодезическая задача</b></font></font></p>
+					<td colspan="8" style="text-align: center;">
+						<table align="center" border="1" cellpadding="3" cellspacing="1">
+							<tbody>
+								<tr>
+									<td colspan="3" style="text-align: center;">
+										<p><font face="Tahoma, Geneva, sans-serif"><font size="4"><b>Обратная геодезическая задача</b></font></font></p>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Xкнп:</b></font></font></td>
+									<td style="width: 120px; text-align: center;"><input id="Xknp" maxlength="7" name="Xknp" size="10" type="number"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Yкнп:</b></font></font></td>
+									<td style="width: 120px; text-align: center;"><input id="Yknp" maxlength="7" name="Yknp" size="10" type="number"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Хц:</b></font></font></td>
+									<td style="width: 120px; text-align: center;"><input id="Xz" maxlength="7" name="Xz" size="10" type="number"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Yц:</b></font></font></td>
+									<td style="width: 120px; text-align: center;"><input id="Yz" maxlength="7" name="Yz" size="10" type="number"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: right;">&nbsp;</td>
+									<td style="text-align: center;"><font face="Tahoma, Geneva, sans-serif"><input name="button" type="button" value="    Решение    " onclick="CalcOGZ()"></font></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="vertical-align: top; text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b><span style="text-align: right;">Ак:</span></b></font></font></td>
+									<td style="vertical-align: top; text-align: center;"><input id="Ak" maxlength="4" name="Ak" size="10" type="number"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="vertical-align: top; text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Дк:</b></font></font></td>
+									<td style="vertical-align: top; text-align: center;"><input id="Dk" name="Dk" size="10" type="number"></td>
+								</tr>
+							</tbody>
+						</table>
 					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Xкнп:</b></font></font></td>
-					<td style="width: 120px; text-align: center;"><input id="Xknp" maxlength="7" name="Xknp" size="10" type="number"></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Yкнп:</b></font></font></td>
-					<td style="width: 120px; text-align: center;"><input id="Yknp" maxlength="7" name="Yknp" size="10" type="number"></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Хц:</b></font></font></td>
-					<td style="width: 120px; text-align: center;"><input id="Xz" maxlength="7" name="Xz" size="10" type="number"></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Yц:</b></font></font></td>
-					<td style="width: 120px; text-align: center;"><input id="Yz" maxlength="7" name="Yz" size="10" type="number"></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: right;">&nbsp;</td>
-					<td style="text-align: center;"><font face="Tahoma, Geneva, sans-serif"><input name="button" type="button" value="    Решение    " onclick="CalcOGZ()"></font></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="vertical-align: top; text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b><span style="text-align: right;">Ак:</span></b></font></font></td>
-					<td style="vertical-align: top; text-align: center;"><input id="Ak" maxlength="4" name="Ak" size="10" type="number"></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="vertical-align: top; text-align: right;"><font size="4"><font face="Tahoma, Geneva, sans-serif"><b>Дк:</b></font></font></td>
-					<td style="vertical-align: top; text-align: center;"><input id="Dk" name="Dk" size="10" type="number"></td>
+					<td colspan="8" style="text-align: center;">
+						<iframe 
+							width="100%" 
+							height="200" 
+							frameborder="0" 
+							scrolling="no" 
+							marginheight="0" 
+							marginwidth="0" 
+							src="http://www.openstreetmap.org/export/embed.html?bbox=36.42405509948731%2C49.92583647987845%2C36.44615650177003%2C49.93775647988345&amp;layer=mapnik&amp;marker=49.93178994227235%2C36.43510580062866" 
+							style="border: 1px solid black">
+						</iframe>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<p>
-		<p>
-		<iframe 
-			width="100%" 
-			height="200" 
-			frameborder="0" 
-			scrolling="no" 
-			marginheight="0" 
-			marginwidth="0" 
-			src="http://www.openstreetmap.org/export/embed.html?bbox=36.42405509948731%2C49.92583647987845%2C36.44615650177003%2C49.93775647988345&amp;layer=mapnik&amp;marker=49.93178994227235%2C36.43510580062866" 
-			style="border: 1px solid black">
-		</iframe>
-		<br/>
 		<p>
 		<p>
 		<div 
