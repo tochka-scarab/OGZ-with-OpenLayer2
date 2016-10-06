@@ -91,7 +91,8 @@
 					
 					// координаты текущего положения мыши в метрах
 					map.addControl(
-						new OpenLayers.Control.MousePosition({
+						new OpenLayers.Control.MousePosition(
+						{
 							displayProjection: new OpenLayers.Projection('EPSG:900913')
 						})
 					);
@@ -197,7 +198,7 @@
 		<p>
 		<p>
 		<div 
-			id="basicMap">
+			id="basicMap" >
 		</div>
 		
     </body>
