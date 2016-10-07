@@ -43,34 +43,7 @@
 		</script>
 		
 		<script type="text/javascript">
-			OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
-				{
-					//var inp_xz = document.getElementById('Xz');
-					//var inp_yz = document.getElementById('Yz');
-					
-					defaultHandlerOptions:
-						{
-							'single': true,
-							'double': false,
-							'pixelTolerance': 0,
-							'stopSingle': false,
-							'stopDouble': false
-						},
-					initialize: function(options)
-						{
-							this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
-							OpenLayers.Control.prototype.initialize.apply(this, arguments); 
-							this.handler = new OpenLayers.Handler.Click(this,{'click': this.trigger}, this.handlerOptions);
-						},
-					trigger: function(e)
-						{
-							//Выводим координаты точки, на которую кликнули
-							var lonlat = map.getLonLatFromPixel(e.xy);
-							alert("You clicked near " + lonlat.lat + " N, " + lonlat.lon + " E");
-							document.getElementById('Xz').value = lonlat.lat;
-							document.getElementById('Yz').value = lonlat.lon;
-						}
-				}); 
+			 
 		</script>
 		
 		<script>
@@ -85,6 +58,7 @@
 					map.addLayer(mapnik);//добавление слоя
 					map.setCenter(position, zoom );//центрируем на долготе-широте с указаным масштабом
 					
+					
 					//создаем новый слой оборудования
 					var layerMarkers = new OpenLayers.Layer.Markers("Equipments");
 					map.addLayer(layerMarkers);//добавляем этот слой к карте
@@ -98,6 +72,37 @@
 					layerMarkers.addMarker(//добавляем маркер к слою маркеров
 						new OpenLayers.Marker(position, //координаты вставки маркера
 						icon));//иконка маркера
+					
+					OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,
+						{
+							//var inp_xz = document.getElementById('Xz');
+							//var inp_yz = document.getElementById('Yz');
+							
+							defaultHandlerOptions:
+								{
+									'single': true,
+									'double': false,
+									'pixelTolerance': 0,
+									'stopSingle': false,
+									'stopDouble': false
+								},
+							initialize: function(options)
+								{
+									this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
+									OpenLayers.Control.prototype.initialize.apply(this, arguments); 
+									this.handler = new OpenLayers.Handler.Click(this,{'click': this.trigger}, this.handlerOptions);
+								},
+							trigger: function(e)
+								{
+									//Выводим координаты точки, на которую кликнули
+									var lonlat = map.getLonLatFromPixel(e.xy);
+									//alert("You clicked near " + lonlat.lat + " N, " + lonlat.lon + " E");
+									document.getElementById('Xz').value = lonlat.lat;
+									document.getElementById('Yz').value = lonlat.lon;
+									layerMarkers.addMarker(new OpenLayers.Marker(lonlat, icon));
+								}
+						});
+					
 
 					// шкала для выбора заранее настроенного масштаба
 					//map.addControl(new OpenLayers.Control.PanZoomBar());
@@ -114,19 +119,19 @@
 
 					// координаты текущего положения мыши
 					// преобразование из метров в градусы с помощью proj4js
-					//map.addControl(
-					//	new OpenLayers.Control.MousePosition({
-					//		displayProjection: new OpenLayers.Projection('EPSG:4326')
-					//	})
-					//);
-					
-					// координаты текущего положения мыши в метрах
 					map.addControl(
-						new OpenLayers.Control.MousePosition(
-						{
-							displayProjection: new OpenLayers.Projection('EPSG:4284')
+						new OpenLayers.Control.MousePosition({
+							displayProjection: new OpenLayers.Projection('EPSG:4326')
 						})
 					);
+					
+					// координаты текущего положения мыши в метрах
+					//map.addControl(
+					//	new OpenLayers.Control.MousePosition(
+					//	{
+					//		displayProjection: new OpenLayers.Projection('EPSG:900913')
+					//	})
+					//);
 
 					// обзорная карта
 					//map.addControl(new OpenLayers.Control.OverviewMap());
