@@ -62,7 +62,7 @@
 					//создаем новый слой оборудования
 					var layerMarkers = new OpenLayers.Layer.Markers("Equipments");
 					map.addLayer(layerMarkers);//добавляем этот слой к карте
-
+					
 					// Маркер текущего еквипмента
 					var size = new OpenLayers.Size(21, 25);//размер картинки для маркера
 					//смещение картинки для маркера
@@ -98,12 +98,11 @@
 									var lonlat = map.getLonLatFromPixel(e.xy);
 									var lotlat4BL = map.getLonLatFromPixel(e.xy).transform(toProjection, fromProjection);
 									//alert("You clicked near " + lonlat.lat + " N, " + lonlat.lon + " E");
-									document.getElementById('Xz').value = lotlat4BL.lat;
-									document.getElementById('Yz').value = lotlat4BL.lon;
+									document.getElementById('Xz').value = lotlat4BL.lon;
+									document.getElementById('Yz').value = lotlat4BL.lat;
 									layerMarkers.addMarker(new OpenLayers.Marker(lonlat, icon));
 								}
 						});
-					
 
 					// шкала для выбора заранее настроенного масштаба
 					//map.addControl(new OpenLayers.Control.PanZoomBar());
