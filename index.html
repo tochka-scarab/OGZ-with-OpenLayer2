@@ -96,9 +96,10 @@
 								{
 									//Выводим координаты точки, на которую кликнули
 									var lonlat = map.getLonLatFromPixel(e.xy);
+									var lotlat4BL = map.getLonLatFromPixel(e.xy).transform(toProjection, fromProjection);
 									//alert("You clicked near " + lonlat.lat + " N, " + lonlat.lon + " E");
-									document.getElementById('Xz').value = lonlat.lat;
-									document.getElementById('Yz').value = lonlat.lon;
+									document.getElementById('Xz').value = lotlat4BL.lat;
+									document.getElementById('Yz').value = lotlat4BL.lon;
 									layerMarkers.addMarker(new OpenLayers.Marker(lonlat, icon));
 								}
 						});
